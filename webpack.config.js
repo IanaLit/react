@@ -1,98 +1,71 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const webpack = require("webpack")
-const path = require("path")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-module.exports = (env, options) => {
-  const isDevelopment = options.mode !== "production"
+const devServer = (isDev) => !isDev ? {} : {
+  devServer: {
+    open: true,
+    port: 8080,
+    contentBase: path.join(__dirname, 'public'),
+  },
+};
 
-  return {
-    mode: isDevelopment ? "development" : "production",
-    target: "web",
-    entry: "./src/index.tsx",
-    output: {
-      filename: isDevelopment ? "[name].js" : "[name].[contenthash:8].js",
-      path: path.join(__dirname, "/dist"),
-    },
-    resolve: {
-      extensions: [".ts", ".tsx", ".js"],
-    },
-    module: {
-      rules: [
-        {
-          test: /\.ts(x)?$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              cacheDirectory: true,
-            },
-          },
-        },
-      ],
-    },
-    devtool: isDevelopment ? "eval-cheap-module-source-map" : "nosources-source-map",
-    optimization: {
-      runtimeChunk: {
-        name: "runtime",
+const esLintPlugin = (isDev) => isDev ? [] : [ new ESLintPlugin({ extensions: ['ts', 'js'] }) ];
+
+module.exports = ({ development }) => ({
+  mode: development ? 'development' : 'production',
+  devtool: development ? 'inline-source-map' : false,
+  entry: {
+    main: './src/index.tsx',
+  },
+  output: {
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'assets/[hash][ext]',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts(x)?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
-      splitChunks: {
-        chunks: "all",
-        cacheGroups: {
-          defaultVendors: {
-            name: "vendors",
-            test: /[\\/]node_modules[\\/]/,
-          },
-        },
-        name: false,
+      {
+        test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
+        type: 'asset/resource',
       },
-    },
-    performance: {
-      hints: false,
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        minify: isDevelopment
-          ? false
-          : {
-              collapseWhitespace: true,
-              keepClosingSlash: true,
-              minifyCSS: true,
-              minifyJS: true,
-              minifyURLs: true,
-              removeComments: true,
-              removeEmptyAttributes: true,
-              removeRedundantAttributes: true,
-              removeScriptTypeAttributes: true,
-              removeStyleLinkTypeAttributes: true,
-              useShortDoctype: true,
-            },
-        template: "./src/index.html",
-      }),
-      ...(isDevelopment ? [new webpack.HotModuleReplacementPlugin()] : []),
+      {
+        test: /\.(woff(2)?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      }
     ],
-    stats: {
-      assetsSort: "!size",
-      colors: true,
-      entrypoints: false,
-      errors: true,
-      errorDetails: true,
-      groupAssetsByChunk: false,
-      groupAssetsByExtension: false,
-      groupAssetsByInfo: false,
-      groupAssetsByPath: false,
-      modules: false,
-      relatedAssets: true,
-      timings: false,
-      version: false,
-    },
-    devServer: {
-      contentBase: "dist",
-      historyApiFallback: true,
-      host: "0.0.0.0",
-      hot: true,
-      port: 8080,
-    },
-  }
-}
+  },
+  devtool: 'eval-source-map',
+  plugins: [
+    ...esLintPlugin(development),
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new CopyPlugin({
+      patterns: [{
+        from: 'public',
+        noErrorOnMissing: true,
+      }],
+    }),
+    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+  ],
+  resolve: {
+    extensions: ['.ts', '.js', '.tsx'],
+  },
+  ...devServer(development)
+});
