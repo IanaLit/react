@@ -1,0 +1,19 @@
+.search-panel{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: darkcyan;
+    height: 35px;
+    border-radius: 35px;
+    padding: 5px;
+}
+
+.search-panel:hover > .search-field{
+    width: 180px;
+    padding: 0 10px;
+    color: wheat;
+}
+.search-panel:hover > .button_search{
+   background: white ;
+}
