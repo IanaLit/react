@@ -4,7 +4,12 @@
     margin: 5px;
     display: grid;
     grid-template-rows: 1.4fr 1fr 1fr;
-  }
+    color: darkgrey;
+    &:hover{
+      color: cadetblue;
+    }
+    transition: all 0.2s;
+}
 .price{
   font-size: 1.5em;
   font-weight: bolder;
@@ -15,7 +20,9 @@
   display: flex;
   background: azure;
   justify-content: center;
-  }
+  color: cadetblue;
+}
+  
   
   .address{
     font-size: .85em;

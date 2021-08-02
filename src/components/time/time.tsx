@@ -1,10 +1,10 @@
 import React from 'react';
 import './time.scss';
     
-    const Time = () => {
+    const Time = (time:string) => {
       return (
 
-          <div className="time">2 days ago</div>
+          <div className="time">{time}</div>
 
       );
     };

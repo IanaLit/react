@@ -1,15 +1,19 @@
 .search-panel{
     transform: translate(0%, -50%);
+    opacity: 0.5;
     background: darkcyan;
     height: 35px;
     border-radius: 35px;
     padding: 5px;
 }
 
-.search-panel:hover > .search-field{
+.search-panel:hover {
+    opacity: 1;
+    &> .search-field{
     width: 290px;
     padding: 0 10px;
     color: wheat;
+}
 }
 .search-panel:hover > .button_search{
    background: white ;
