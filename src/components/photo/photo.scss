@@ -1,0 +1,14 @@
+
+  .photo{
+    width: 100%;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .placeholder-img{
+    background-image: url("/public/619x291-apartment.35c.jpg");
+  }

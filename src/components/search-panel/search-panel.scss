@@ -1,8 +1,5 @@
 .search-panel{
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(0%, -50%);
     background: darkcyan;
     height: 35px;
     border-radius: 35px;
@@ -10,7 +7,7 @@
 }
 
 .search-panel:hover > .search-field{
-    width: 180px;
+    width: 290px;
     padding: 0 10px;
     color: wheat;
 }
