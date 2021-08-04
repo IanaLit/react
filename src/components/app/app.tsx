@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CardInterface from '../../interfaces/cardInterface';
 import Card from '../card/card';
+import { Form } from '../form/form';
 import SearchPanel from '../search-panel/search-panel';
 import './app.scss';
 
@@ -50,11 +52,16 @@ export function App(): JSX.Element {
   const cards = cardsData.map((card) =>{
         return <Card key = {card.imgUrl} {...card}/>
       });
+  const [formValues, setFormValues] = useState([]);
   return (
     <div className ="app">
       <SearchPanel />
+      <Form setFormValues={setFormValues}/>
       <div className='cards'>
-      {cards}
+      {/* {cards} */}
+      {formValues.map((item, idx) =>{
+        return <Card key={idx} {...item}/>
+      })}
       </div>
     </div>
   );
