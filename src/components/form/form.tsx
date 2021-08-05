@@ -1,5 +1,6 @@
 import React, { FormEvent} from "react";
 import { useState } from "react";
+import './form.scss';
 
 export const Form = ({setFormValues}:{setFormValues: any}) => {
 
@@ -30,6 +31,7 @@ export const Form = ({setFormValues}:{setFormValues: any}) => {
     return(
         <form onSubmit = {handleSubmit} className = 'form' >
 
+<div className="column">
             <label htmlFor="firstName" className="firstName">
                 <p>
                     First Name:
@@ -46,14 +48,29 @@ export const Form = ({setFormValues}:{setFormValues: any}) => {
                 <input type="text" value={lastName} name="lastName" onChange={(event)=>setLastName(event.target.value)}>
                 </input>
             </label>
-            <label htmlFor="zipCode" className="zipCode">
-                <p>
-                    Zip Code:
-                    {/* {errors?.info === '' && <span className='error'>*info</span>} */}
-                </p>
-                <input type="text" value={zipCode} name="zipCode" onChange={(event)=>setZipCode(event.target.value)}>
-                </input>
-            </label>
+            
+            <div className ="gender">
+            <h5>Gender</h5><label htmlFor="male">Male
+            <input
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    onChange={()=>setGender(prev => !prev)}
+                    checked={!gender}
+                />
+                </label>
+<label htmlFor="female">Female
+                <input
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    onChange={()=>setGender(prev => !prev)}
+                    checked={gender}
+                />
+                </label>
+                </div>
+</div>  
+<div className="column">         
             <label htmlFor="birthDate" className="label">
                 <p>
                     Birth Date:
@@ -70,6 +87,14 @@ export const Form = ({setFormValues}:{setFormValues: any}) => {
                 <input type="date" value={deliveryDate} name="deliveryDate" onChange={(event)=>setDeliveryDate(event.target.value)}>
                 </input>
             </label>
+            <label htmlFor="zipCode" className="zipCode">
+                <p>
+                    Zip Code:
+                    {/* {errors?.info === '' && <span className='error'>*info</span>} */}
+                </p>
+                <input type="text" value={zipCode} name="zipCode" onChange={(event)=>setZipCode(event.target.value)}>
+                </input>
+            </label>
             <label htmlFor = "country" className="label">
                 <p>
                     Country:
@@ -81,28 +106,10 @@ export const Form = ({setFormValues}:{setFormValues: any}) => {
                     <option>Ukraine</option>
                     </select>
             </label>  
-            <div>
-            <h5>Gender</h5>
-            <input
-					type="radio"
-					id="male"
-					name="gender"
-					onChange={()=>setGender(prev => !prev)}
-					checked={!gender}
-				/>
-				<label htmlFor="male">Male</label>
-
-				<input
-					type="radio"
-					id="female"
-					name="gender"
-                    onChange={()=>setGender(prev => !prev)}
-					checked={gender}
-				/>
-				<label htmlFor="female">Female</label>
-                </div>
-                
-            <div>
+            
+</div>    
+<div className="column">           
+            <div className="gifts">
                 <h5>Gifts</h5>
                 <label htmlFor="coupon" className="label">
                 <p>
@@ -134,9 +141,10 @@ export const Form = ({setFormValues}:{setFormValues: any}) => {
                 <input type="checkbox" checked={agree} name="agree" onChange={()=>setAgree(prev => !prev)}/>
             </label>
 
-            <div className ="button_submit">
-                <input type="submit" value='send'/>
+            <div className="form-button">
+                <input className ="button_submit" type="submit" value='send'/>
             </div>
+</div>  
         </form>
 
     )

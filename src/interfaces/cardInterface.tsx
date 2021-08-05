@@ -1,9 +1,12 @@
 export default interface CardInterface{
-
-    publishDate: string,
-    like: string,
-    imgUrl: string,
-    price: string,
-    info: string,
-    address: string,
-}
+    firstName:string, 
+    lastName:string,
+    zipCode:string, 
+    birthDate:string, 
+    deliveryDate:string, 
+    country:string,
+    coupon:string, 
+    samples:string,
+    pocket:string, 
+    gender:string, 
+    agree:string}
