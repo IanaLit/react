@@ -7,11 +7,11 @@ import Photo from '../photo/photo';
 import './card.scss';
 
 const Card = (card: CardInterface) => {
-  const { time, like, imgUrl, ...desc} = card;
+  const { publishDate, like, imgUrl, ...desc} = card;
   return (
     
     <div className="card">
-        {Photo(imgUrl, time, like)}
+        {Photo(imgUrl, publishDate, like)}
         {Description(desc)}
     </div>
   );

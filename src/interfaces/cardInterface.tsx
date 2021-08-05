@@ -1,6 +1,6 @@
 export default interface CardInterface{
 
-    time: string,
+    publishDate: string,
     like: string,
     imgUrl: string,
     price: string,

@@ -5,13 +5,13 @@ import Time from '../time/time';
 
     import './photo.scss';
     
-    const Photo = (imgUrl:string, time:string, like:string) => {
-      console.log(imgUrl);
+    const Photo = (imgUrl:string, publishDate:string, like:string) => {
+      console.log(imgUrl, publishDate);
       return (
         <div className="photo placeholder-img" style={{ 
           backgroundImage: `url("${imgUrl}")` 
         }}>
-        {Time(time)};
+        {Time(publishDate)};
         <Heart/>
         </div>
       );

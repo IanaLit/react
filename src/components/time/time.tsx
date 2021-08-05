@@ -1,10 +1,10 @@
 import React from 'react';
 import './time.scss';
     
-    const Time = (time:string) => {
+    const Time = (publishDate:string) => {
       return (
 
-          <div className="time">{time}</div>
+          <div className="time">{publishDate}</div>
 
       );
     };
