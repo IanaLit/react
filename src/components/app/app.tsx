@@ -54,14 +54,27 @@ export function App(): JSX.Element {
   //     });
   const [formValues, setFormValues] = useState([]);
   return (
-    <div className ="app">
+    <div className="app">
       <SearchPanel />
-      <Form setFormValues={setFormValues}/>
-      <div className='cards'>
-      {/* {cards} */}
-      {formValues.map((item, idx) =>{
-        return <Card key={idx} {...item}/>
-      })}
+      <Form setFormValues={setFormValues} />
+      <div className="cards">
+        {/* {cards} */}
+        {formValues.map((item: CardInterface) => (
+          <Card
+            key={+new Date().getTime()}
+            firstName={item.firstName}
+            lastName={item.lastName}
+            zipCode={item.zipCode}
+            birthDate={item.birthDate}
+            deliveryDate={item.deliveryDate}
+            country={item.country}
+            coupon={item.coupon}
+            samples={item.samples}
+            pocket={item.pocket}
+            gender={item.gender}
+            agree={item.agree}
+          />
+        ))}
       </div>
     </div>
   );

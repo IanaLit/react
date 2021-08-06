@@ -3,7 +3,7 @@ import React from 'react';
 import './description.scss';
 
 const Description = (desc: any) => {
-  const {price, info, address} = desc;
+  const { price, info, address } = desc;
   return (
     <div className="description">
       <div className="price">{price}</div>
