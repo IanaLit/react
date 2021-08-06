@@ -41,10 +41,7 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
     setErrors({});
 
     const age = +new Date().getFullYear() - +new Date(birthDate).getFullYear();
-    console.log(+new Date(deliveryDate), +new Date());
     const deliveryTime = +new Date(deliveryDate).getTime() - +new Date().getTime();
-    console.log(deliveryTime);
-    console.log(agree);
     if (firstName.length < 3 || firstName.length > 20) {
       setErrors((state) => ({ ...state, firstName }));
     }
@@ -63,7 +60,6 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
     if (!agree) {
       setErrors((state) => ({ ...state, agree }));
     }
-    console.log(errors);
   };
   useEffect(() => {
     validate();
@@ -78,7 +74,6 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
       reset();
       setShowPopup(true);
     }
-    console.log(errors);
   };
   
   return (
