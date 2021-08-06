@@ -1,11 +1,12 @@
-.app{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10vw auto;
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10vw auto;
+  padding-top: 110px;
 }
-.cards{    
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 5vw;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5vw;
 }

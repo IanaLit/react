@@ -1,5 +1,6 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import errorStateInterface from '../../interfaces/errorStateInterface';
+import Popup from '../popup/popup';
 
 import './form.scss';
 
@@ -15,6 +16,7 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
   const [samples, setSamples] = useState(false);// check
   const [pocket, setPocket] = useState(false);// check
   const [agree, setAgree] = useState(false);// checkbox
+  const [showPopup, setShowPopup] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -31,6 +33,10 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
     setGender(false);
     setAgree(false);
   };
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+    };
   const validate = () => {
     setErrors({});
 
@@ -70,10 +76,13 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
         firstName, lastName, zipCode, birthDate, deliveryDate, country, coupon, samples, pocket, gender, agree,
       }]);
       reset();
+      setShowPopup(true);
     }
     console.log(errors);
   };
+  
   return (
+    <div>
     <form onSubmit={handleSubmit} className="form">
 
       <div className="column">
@@ -203,6 +212,7 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
         </div>
       </div>
     </form>
-
+      {showPopup && <Popup closePopup={ togglePopup}/> }
+    </div>
   );
 };

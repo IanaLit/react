@@ -52,6 +52,10 @@
     }
   }
 }
+.button_submit:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 6px rgba(35, 110, 100, 0.5);
+}
 .button_submit {
   height: fit-content;
   width: 83%;
@@ -63,11 +67,14 @@
   color: white;
   border: none;
   transition: box-shadow 0.3s;
+  &__popup {
+    width: 20%;
+    &:hover {
+      box-shadow: 0px 0px 0px 4px rgb(173 255 47 / 50%);
+    }
+  }
 }
-.button_submit:hover {
-  cursor: pointer;
-  box-shadow: 0px 0px 0px 6px rgba(35, 110, 100, 0.5);
-}
+
 p > .error {
   background-color: rgba(231, 218, 222, 0.89);
   font-weight: bold;
