@@ -159,7 +159,6 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
         <label htmlFor="country" className="label">
           <p>
             Country:
-            {/* {(errors as errorStateInterface)?.address === '' && <span className='error'>*address</span>} */}
           </p>
           <select className="select" name="country" value="country" onChange={(event) => setCountry(event.target.value)}>
             <option>Russia</option>
@@ -175,21 +174,18 @@ export const Form = ({ setFormValues }:{ setFormValues: any }) => {
           <label htmlFor="coupon" className="label">
             <p>
               Coupon:
-              {/* {(errors as errorStateInterface)?.agree === '' && <span className='error'>*agree</span>} */}
             </p>
             <input type="checkbox" checked={coupon} name="coupon" onChange={() => setCoupon((prev) => !prev)} />
           </label>
           <label htmlFor="samples" className="label">
             <p>
               Samples:
-              {/* {(errors as errorStateInterface)?.agree === '' && <span className='error'>*agree</span>} */}
             </p>
             <input type="checkbox" checked={samples} name="samples" onChange={() => setSamples((prev) => !prev)} />
           </label>
           <label htmlFor="pocket" className="label">
             <p>
               Pocket:
-              {/* {(errors as errorStateInterface)?.agree === '' && <span className='error'>*agree</span>} */}
             </p>
             <input type="checkbox" checked={pocket} name="pocket" onChange={() => setPocket((prev) => !prev)} />
           </label>
