@@ -10,7 +10,7 @@ export function App(): JSX.Element {
   return (
     <div className="app">
       <SearchPanel />
-      <Form setFormValues={setFormValues} />
+      {/* <Form setFormValues={setFormValues} /> */}
       <div className="cards">
         {formValues.map((item: CardInterface) => (
           <Card
