@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CardInterface from '../../interfaces/cardInterface';
+import { Dashboard } from '../../pages/dashboard';
 import Card from '../card/card';
 import { Form } from '../form/form';
 import SearchPanel from '../search-panel/search-panel';
@@ -9,9 +10,10 @@ export function App(): JSX.Element {
   const [formValues, setFormValues] = useState([]);
   return (
     <div className="app">
-      <SearchPanel />
+      <Dashboard/>
+      {/* <SearchPanel /> */}
       {/* <Form setFormValues={setFormValues} /> */}
-      <div className="cards">
+      {/* <div className="cards">
         {formValues.map((item: CardInterface) => (
           <Card
             key={+new Date().getTime()}
@@ -28,7 +30,7 @@ export function App(): JSX.Element {
             agree={item.agree}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
