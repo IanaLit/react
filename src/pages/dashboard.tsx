@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
-import React, { ChangeEvent, FC, useState , MouseEvent } from 'react';
+import React, { ChangeEvent, FC, useState , MouseEvent, useEffect } from 'react';
 import { ArticleCard } from '../components/card/articleCard';
+import { Pagination } from '../components/pagination/pagination';
 import SearchPanel from '../components/search-panel/search-panel';
 import { Article, GET200_Articles, SortType } from '../interfaces/articleInterface';
 import axios from '../services/api';
@@ -11,16 +12,23 @@ export const Dashboard: FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [articles, setArticles] = useState<Article[]>([]);
     const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(5);
+    const [totalResults, setTotalResults] = useState(0);
 
-    const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    useEffect(() => {
+        handleSubmit('');
+    }, [page]);
+    const handleSubmit = async (e: ChangeEvent<HTMLFormElement>|'') => {
+        if(e)e.preventDefault();
         //setIsLoading(true);
         try {
             const response: AxiosResponse<GET200_Articles> = await axios.get(
-                `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}`,
+                `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
             );
             setArticles(response.data.articles);
-            //console.log(response.data)
+            setTotalResults(response.data.totalResults);
+            console.log(response.data)
         } catch (err: any) {
             console.error(e);
         } finally {
@@ -35,6 +43,9 @@ export const Dashboard: FC = () => {
         const { value } = e.target;
         setSearchValue(value);
     };
+    const gotoPage = (page:number) => {
+        setPage(page);
+    }
     return (
         <div>
             <SearchPanel
@@ -58,7 +69,8 @@ export const Dashboard: FC = () => {
                         urlToImage={article.urlToImage}
                 />)
             })}
-            </div> 
+            </div>
+            <Pagination page={page} pageSize={pageSize} totalResults={totalResults} gotoPage={ gotoPage}/>
         </div>
     )
         

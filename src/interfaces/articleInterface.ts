@@ -10,6 +10,9 @@ export interface Article {
 
 export interface GET200_Articles {
   articles: Article[];
+  page: number;
+  pageSize: number;
+  totalResults: number;
 }
 export enum SortType {
   relevancy = 'relevancy',
