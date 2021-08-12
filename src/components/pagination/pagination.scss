@@ -1,5 +1,7 @@
 .pagination {
-  display: inline-block;
+  display: flex;
+  list-style: none;
+  justify-content: center;
 }
 
 .pagination a {
@@ -9,8 +11,8 @@
   text-decoration: none;
 }
 
-.pagination a.active {
-  background-color: #4caf50;
+.pagination .active {
+  background-color: #30a1a58a;
   color: white;
   border-radius: 5px;
 }
@@ -18,4 +20,9 @@
 .pagination a:hover:not(.active) {
   background-color: #ddd;
   border-radius: 5px;
+}
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
