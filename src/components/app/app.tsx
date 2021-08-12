@@ -10,7 +10,7 @@ export function App(): JSX.Element {
   const [formValues, setFormValues] = useState([]);
   return (
     <div className="app">
-      <Dashboard/>
+      <Dashboard />
       {/* <SearchPanel /> */}
       {/* <Form setFormValues={setFormValues} /> */}
       {/* <div className="cards">

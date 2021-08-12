@@ -1,12 +1,10 @@
 import React from 'react';
 import './time.scss';
-    
-    const Time = (props:{time:string}) => {
-      return (
 
-          <div className="time">{props.time}</div>
+const Time = (props:{ time:string }) => (
 
-      );
-    };
-    
-    export default Time;
+  <div className="time">{props.time}</div>
+
+);
+
+export default Time;

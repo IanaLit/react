@@ -15,11 +15,11 @@ const SearchPanel = (props: {
   handleFilter: (sort:SortType) => void,
 }) => (
   <form className="form" onSubmit={props.handleSubmit}>
-    <div className="search-panel" >
+    <div className="search-panel">
       <SearchField searchValue={props.searchValue} handleChange={props.handleChange} />
       <SearchButton />
       <Filter sortBy={props.sortBy} handleFilter={props.handleFilter} />
-      </div>
+    </div>
   </form>
 );
 
