@@ -12,7 +12,7 @@ import axios from '../services/api';
 const API_KEY = '13f832d3d3244deb8442164a5f9263af';
 
 export const Dashboard: FC = () => {
-  const [searchValue, setSearchValue] = useState<string>('all');
+  const [searchValue, setSearchValue] = useState<string>('');
   const [articles, setArticles] = useState<Article[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
   const [page, setPage] = useState(1);
@@ -24,12 +24,14 @@ export const Dashboard: FC = () => {
     if (e)e.preventDefault();
     setIsLoading(true);
     try {
+      if(searchValue){
       const response: AxiosResponse<GET200Articles> = await axios.get(
         `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
       );
       setArticles(response.data.articles);
       setTotalResults(response.data.totalResults);
-      console.log(response.data);
+}
+
     } catch (err: any) {
       console.error(e);
     } finally {

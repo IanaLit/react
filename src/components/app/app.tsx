@@ -3,14 +3,17 @@ import CardInterface from '../../interfaces/cardInterface';
 import { Dashboard } from '../../pages/dashboard';
 import Card from '../card/card';
 import { Form } from '../form/form';
-import SearchPanel from '../search-panel/search-panel';
+import { BrowserRouter, Link, Route, Switch, Redirect } from 'react-router-dom';
 import './app.scss';
+import { Navbar } from '../navbar/navbar';
+import { AppRouter } from '../appRouter';
 
 export function App(): JSX.Element {
   const [formValues, setFormValues] = useState([]);
   return (
-    <div className="app">
-      <Dashboard />
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <AppRouter/>
+    </BrowserRouter>
   );
 }
