@@ -9,18 +9,23 @@ import { SortType } from '../../interfaces/articleInterface';
 
 const SearchPanel = (props: {
   searchValue: string,
-  sortBy:SortType,
+  sortBy: SortType,
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void,
   handleSubmit: (e: ChangeEvent<HTMLFormElement>) => Promise<void>,
-  handleFilter: (sort:SortType) => void,
-}) => (
-  <form className="form" onSubmit={props.handleSubmit}>
-    <div className="search-panel">
-      <SearchField searchValue={props.searchValue} handleChange={props.handleChange} />
-      <SearchButton />
-      <Filter sortBy={props.sortBy} handleFilter={props.handleFilter} />
-    </div>
-  </form>
-);
+  handleFilter: (sort: SortType) => void,
+}) => {
+  const {
+    searchValue, sortBy, handleChange, handleSubmit, handleFilter,
+  } = props;
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <div className="search-panel">
+        <SearchField searchValue={searchValue} handleChange={handleChange} />
+        <SearchButton />
+        <Filter sortBy={sortBy} handleFilter={handleFilter} />
+      </div>
+    </form>
+  );
+};
 
 export default SearchPanel;

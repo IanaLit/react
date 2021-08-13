@@ -8,7 +8,7 @@ export interface Article {
   urlToImage: string;
 }
 
-export interface GET200_Articles {
+export interface GET200Articles {
   articles: Article[];
   page: number;
   pageSize: number;

@@ -8,13 +8,13 @@ const RIGHT_PAGE = 'RIGHT';
 
 const range = (from:number, to:number, step = 1) => {
   let i = from;
-  const range = [];
+  const rangeArray = [];
 
   while (i <= to) {
-    range.push(i);
+    rangeArray.push(i);
     i += step;
   }
-  return range;
+  return rangeArray;
 };
 
 export const Pagination = (props: {
@@ -23,13 +23,20 @@ export const Pagination = (props: {
   gotoPage: (page: number) => void,
   setPageSize: any
 }) => {
-  const [currentPage, setCurrentPage] = useState(props.page);
+  const {
+    page,
+    pageSize,
+    totalResults,
+    gotoPage,
+    setPageSize,
+  } = props;
+  const [currentPage, setCurrentPage] = useState(page);
   useEffect(() => {
-    setCurrentPage(props.page);
-  }, [props.page]);
+    setCurrentPage(page);
+  }, [page]);
 
   const fetchPageNumbers = () => {
-    const totalPages = Math.ceil(props.totalResults / props.pageSize);
+    const totalPages = Math.ceil(totalResults / pageSize);
 
     const totalNumbers = 3;
     const totalBlocks = totalNumbers + 2;
@@ -72,52 +79,52 @@ export const Pagination = (props: {
     return range(1, totalPages);
   };
 
-  const handleClick = (page:number | string) => (e:MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (newPage:number | string) => (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    props.gotoPage((page as number));
+    gotoPage((newPage as number));
   };
 
-  const handleMoveLeft = (e:MouseEvent<HTMLAnchorElement>) => {
+  const handleMoveLeft = (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    props.gotoPage(currentPage - 1);
+    gotoPage(currentPage - 1);
   };
 
-  const handleMoveRight = (e:MouseEvent<HTMLAnchorElement>) => {
+  const handleMoveRight = (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    props.gotoPage(currentPage + 1);
+    gotoPage(currentPage + 1);
   };
 
-  if (!props.totalResults || props.totalResults === 1) return null;
+  if (!totalResults || totalResults === 1) return null;
   const pages = fetchPageNumbers();
   return (
     <div className="pagination">
       <ul>
-        { pages.map((page, index) => {
-          if (page === LEFT_PAGE) {
+        { pages.map((curPage, index) => {
+          if (curPage === LEFT_PAGE) {
             return (
-              <li key={index} className="page-item">
-                <a className="page-link" href="#" aria-label="Previous" onClick={handleMoveLeft}>
+              <li key={curPage} className="page-item">
+                <button type="button" className="page-link" aria-label="Previous" onClick={handleMoveLeft}>
                   <span aria-hidden="true">&laquo;</span>
                   <span className="sr-only">Previous</span>
-                </a>
+                </button>
               </li>
             );
           }
 
-          if (page === RIGHT_PAGE) {
+          if (curPage === RIGHT_PAGE) {
             return (
-              <li key={index} className="page-item">
-                <a className="page-link" href="#" aria-label="Next" onClick={handleMoveRight}>
+              <li key={curPage} className="page-item">
+                <button type="button" className="page-link" aria-label="Next" onClick={handleMoveRight}>
                   <span aria-hidden="true">&raquo;</span>
                   <span className="sr-only">Next</span>
-                </a>
+                </button>
               </li>
             );
           }
 
           return (
-            <li key={index} className={`page-item${currentPage === page ? ' active' : ''}`}>
-              <a className="page-link" href="#" onClick={handleClick(page)}>{ page }</a>
+            <li key={curPage} className={`page-item${page === +curPage ? ' active' : ''}`}>
+              <button type="button" className="page-link" onClick={handleClick(curPage)}>{ curPage }</button>
             </li>
           );
         }) }
@@ -125,7 +132,7 @@ export const Pagination = (props: {
       </ul>
       <label htmlFor="pageSize">
         page size:
-        <input type="text" name="pageSize" value={props.pageSize} onChange={props.setPageSize} />
+        <input type="text" name="pageSize" value={pageSize} onChange={setPageSize} />
       </label>
 
     </div>

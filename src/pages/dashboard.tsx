@@ -6,7 +6,7 @@ import { ArticleCard } from '../components/card/articleCard';
 import { Loader } from '../components/loader/loader';
 import { Pagination } from '../components/pagination/pagination';
 import SearchPanel from '../components/search-panel/search-panel';
-import { Article, GET200_Articles, SortType } from '../interfaces/articleInterface';
+import { Article, GET200Articles, SortType } from '../interfaces/articleInterface';
 import axios from '../services/api';
 
 const API_KEY = '13f832d3d3244deb8442164a5f9263af';
@@ -20,14 +20,11 @@ export const Dashboard: FC = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    handleSubmit('');
-  }, [page, pageSize]);
   const handleSubmit = async (e: ChangeEvent<HTMLFormElement> | '') => {
     if (e)e.preventDefault();
     setIsLoading(true);
     try {
-      const response: AxiosResponse<GET200_Articles> = await axios.get(
+      const response: AxiosResponse<GET200Articles> = await axios.get(
         `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
       );
       setArticles(response.data.articles);
@@ -39,7 +36,9 @@ export const Dashboard: FC = () => {
       setIsLoading(false);
     }
   };
-
+  useEffect(() => {
+    handleSubmit('');
+  }, [page, pageSize]);
   const handleFilter = (sort:SortType) => {
     setSortBy(sort);
   };
@@ -47,8 +46,8 @@ export const Dashboard: FC = () => {
     const { value } = e.target;
     setSearchValue(value);
   };
-  const gotoPage = (page:number) => {
-    setPage(page);
+  const gotoPage = (newPage:number) => {
+    setPage(newPage);
   };
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -69,7 +68,7 @@ export const Dashboard: FC = () => {
           <div className="cards">
             {articles.map((article, index: number) => (
               <ArticleCard
-                key={index}
+                key={article.publishedAt}
                 author={article.author}
                 content={article.content}
                 description={article.description}

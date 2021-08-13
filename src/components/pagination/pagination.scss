@@ -15,22 +15,23 @@
   }
 }
 
-.pagination a {
+.pagination button {
   color: black;
   float: left;
   padding: 8px 16px;
   text-decoration: none;
 }
 
-.pagination .active {
+.pagination .active button {
   background-color: #30a1a58a;
   color: white;
   border-radius: 5px;
 }
 
-.pagination a:hover:not(.active) {
+.pagination button:hover:not(.active) {
   background-color: #ddd;
   border-radius: 5px;
+  cursor: pointer;
 }
 .dashboard {
   display: flex;

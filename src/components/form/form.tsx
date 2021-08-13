@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import errorStateInterface from '../../interfaces/errorStateInterface';
-import Popup from '../popup/popup';
+import { Popup } from '../popup/popup';
 
 import './form.scss';
 
