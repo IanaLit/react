@@ -1,6 +1,5 @@
-body {
-  // background-image: url("/public/water-1245779_1920.jpg");
-  background-color: cadetblue;
+#root {
+  width: 100%;
 }
 .app {
   display: flex;
@@ -13,4 +12,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   padding-left: 5vw;
+}
+.page {
+  display: flex;
+  justify-content: center;
 }
