@@ -24,14 +24,13 @@ export const Dashboard: FC = () => {
     if (e)e.preventDefault();
     setIsLoading(true);
     try {
-      if(searchValue){
-      const response: AxiosResponse<GET200Articles> = await axios.get(
-        `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
-      );
-      setArticles(response.data.articles);
-      setTotalResults(response.data.totalResults);
-}
-
+      if (searchValue) {
+        const response: AxiosResponse<GET200Articles> = await axios.get(
+          `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
+        );
+        setArticles(response.data.articles);
+        setTotalResults(response.data.totalResults);
+      }
     } catch (err: any) {
       console.error(e);
     } finally {
