@@ -1,10 +1,12 @@
 import React from 'react';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import {
+  Redirect, Route, Switch, useLocation,
+} from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { About } from '../pages/about';
 import { Dashboard } from '../pages/dashboard';
 import { DetailArticle } from '../pages/detail/detailArticle';
 import { NotFound } from '../pages/notFound/notFound';
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import '../style.scss';
 
 export const AppRouter = () => {
@@ -32,6 +34,6 @@ export const AppRouter = () => {
           <Redirect to="/error" />
         </Switch>
       </CSSTransition>
-      </TransitionGroup>
+    </TransitionGroup>
   );
-}
+};
