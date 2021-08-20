@@ -10,6 +10,7 @@ import { useActions } from '../hooks/useAction';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { Article, GET200Articles, SortType } from '../interfaces/articleInterface';
 import axios from '../services/api';
+import { setArticlesPage } from '../store/action-creators/article';
 
 const API_KEY = '13f832d3d3244deb8442164a5f9263af';
 
@@ -17,7 +18,7 @@ export const Dashboard: FC = () => {
 
   const { articles, page, limit, loading, error } = useTypedSelector(state => state.article)
   const { fetchArticles } = useActions();
-
+  console.log(articles);
   const [searchValue, setSearchValue] = useState<string>('');
   // const [articles, setArticles] = useState<Article[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
@@ -34,7 +35,7 @@ export const Dashboard: FC = () => {
         const response: AxiosResponse<GET200Articles> = await axios.get(
           `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
         );
-        setArticles(response.data.articles);
+        // setArticles(response.data.articles);
         setTotalResults(response.data.totalResults);
       }
     } catch (err: any) {
@@ -43,19 +44,22 @@ export const Dashboard: FC = () => {
       setIsLoading(false);
     }
   };
-  useEffect(() => {
-    handleSubmit('');
-  }, [page, pageSize]);
+  // useEffect(() => {
+  //   handleSubmit('');
+  // }, [page, pageSize]);
   const handleFilter = (sort:SortType) => {
     setSortBy(sort);
   };
+  useEffect(() => {
+    fetchArticles(page, limit)
+  }, [page, limit])
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchValue(value);
   };
-  const gotoPage = (newPage:number) => {
-    setPage(newPage);
-  };
+  // const gotoPage = (newPage:number) => {
+  //   setPage(newPage);
+  // };
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setPageSize(+value);
@@ -91,7 +95,7 @@ export const Dashboard: FC = () => {
         page={page}
         pageSize={pageSize}
         totalResults={totalResults}
-        gotoPage={gotoPage}
+        gotoPage={setArticlesPage}
         setPageSize={handleInputChange}
       />
     </div>
