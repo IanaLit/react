@@ -6,16 +6,22 @@ import { ArticleCard } from '../components/card/articleCard';
 import { Loader } from '../components/loader/loader';
 import { Pagination } from '../components/pagination/pagination';
 import SearchPanel from '../components/search-panel/search-panel';
+import { useActions } from '../hooks/useAction';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import { Article, GET200Articles, SortType } from '../interfaces/articleInterface';
 import axios from '../services/api';
 
 const API_KEY = '13f832d3d3244deb8442164a5f9263af';
 
 export const Dashboard: FC = () => {
+
+  const { articles, page, limit, loading, error } = useTypedSelector(state => state.article)
+  const { fetchArticles } = useActions();
+
   const [searchValue, setSearchValue] = useState<string>('');
-  const [articles, setArticles] = useState<Article[]>([]);
+  // const [articles, setArticles] = useState<Article[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const [totalResults, setTotalResults] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
