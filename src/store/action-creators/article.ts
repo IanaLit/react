@@ -8,7 +8,6 @@ import { SortType } from '../../interfaces/articleInterface';
 export const fetchArticles = (page = 1, limit = 5, searchValue ='a', sortBy = SortType.popularity) => {
     return async (dispatch: Dispatch<ArticleAction>) => {
         try {
-            console.log(sortBy);
             dispatch({ type: ArticleActionTypes.FETCH_ARTICLES })
             const response = await axios.get(`v2/everything?apiKey=${API_KEY}`,
                 {
@@ -19,6 +18,7 @@ export const fetchArticles = (page = 1, limit = 5, searchValue ='a', sortBy = So
                         sortBy: sortBy,
                     }
                 });
+            dispatch({type: ArticleActionTypes.SET_TOTAL, payload: response.data.totalResults})
             dispatch({ type: ArticleActionTypes.FETCH_ARTICLES_SUCCESS, payload: response.data.articles });
         }
         catch (e) {
@@ -37,6 +37,8 @@ export function setValue(searchValue: string): ArticleAction {
     return {type: ArticleActionTypes.SET_VALUE, payload: searchValue}
 }
 export function setSortBy(sortBy: SortType): ArticleAction {
-    console.log(sortBy);
     return {type: ArticleActionTypes.SET_SORT_BY, payload: sortBy}
+}
+export function setTotal(total: number): ArticleAction {
+    return { type: ArticleActionTypes.SET_TOTAL, payload: total };
 }

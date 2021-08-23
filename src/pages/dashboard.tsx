@@ -1,6 +1,5 @@
-import { AxiosResponse } from 'axios';
 import React, {
-  ChangeEvent, FC, useState, MouseEvent, useEffect,
+ FC, useState,useEffect,
 } from 'react';
 import { ArticleCard } from '../components/card/articleCard';
 import { Loader } from '../components/loader/loader';
@@ -8,22 +7,13 @@ import { Pagination } from '../components/pagination/pagination';
 import SearchPanel from '../components/search-panel/search-panel';
 import { useActions } from '../hooks/useAction';
 import { useTypedSelector } from '../hooks/useTypedSelector';
-import { Article, GET200Articles, SortType } from '../interfaces/articleInterface';
-import axios from '../services/api';
-import { setArticlesPage } from '../store/action-creators/article';
 
 const API_KEY = '13f832d3d3244deb8442164a5f9263af';
 
 export const Dashboard: FC = () => {
 
-  const { articles, page, limit, loading, error, searchValue, sortBy } = useTypedSelector(state => state.article)
+  const { articles, page, limit} = useTypedSelector(state => state.article)
   const { fetchArticles } = useActions();
-  console.log(articles);
-  // const [searchValue, setSearchValue] = useState<string>('');
-  // const [articles, setArticles] = useState<Article[]>([]);
-  // const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
-  // const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
   const [totalResults, setTotalResults] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,27 +43,9 @@ export const Dashboard: FC = () => {
   useEffect(() => {
     fetchArticles(page, limit)
   }, [page, limit])
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   const { value } = e.target;
-  //   setSearchValue(value);
-  // };
-  // const gotoPage = (newPage:number) => {
-  //   setPage(newPage);
-  // };
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setPageSize(+value);
-  };
   return (
     <div className="dashboard">
-      <SearchPanel
-        // searchValue={searchValue}
-        // sortBy={sortBy}
-        // handleChange={handleChange}
-        // handleSubmit={()=> fetchArticles()}
-        // handleFilter={handleFilter}
-
-      />
+      <SearchPanel/>
       {isLoading ? <Loader />
         : (
           <div className="cards">
@@ -91,13 +63,7 @@ export const Dashboard: FC = () => {
             ))}
           </div>
         )}
-      <Pagination
-        page={page}
-        pageSize={pageSize}
-        totalResults={totalResults}
-        gotoPage={setArticlesPage}
-        setPageSize={handleInputChange}
-      />
+      <Pagination/>
     </div>
   );
 };

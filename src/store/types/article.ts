@@ -8,6 +8,7 @@ export interface ArticleState{
     loading: boolean,
     searchValue: string,
     sortBy: SortType,
+    total: number
 }
 
 export enum ArticleActionTypes {
@@ -17,7 +18,8 @@ export enum ArticleActionTypes {
     SET_ARTICLES_PAGE = 'SET_ARTICLES_PAGE',
     SET_ARTICLES_LIMIT = 'SET_ARTICLES_LIMIT',
     SET_VALUE = 'SET_VALUE',
-    SET_SORT_BY = 'SET_SORT_BY'
+    SET_SORT_BY = 'SET_SORT_BY',
+    SET_TOTAL = 'SET_TOTAL',
 }
 interface FetchArticlesAction {
     type: ArticleActionTypes.FETCH_ARTICLES,
@@ -46,6 +48,11 @@ interface SetSortByAction {
     type: ArticleActionTypes.SET_SORT_BY,
     payload: SortType
 }
+interface SetTotalAction {
+    type: ArticleActionTypes.SET_TOTAL,
+    payload: number
+}
+
 export type ArticleAction =
     FetchArticlesAction
     | FetchArticlesErrorAction
@@ -53,4 +60,5 @@ export type ArticleAction =
     | SetArticlesLimitAction
     | SetArticlesPageAction
     | SetValueAction
-    | SetSortByAction;
+    | SetSortByAction
+    | SetTotalAction;

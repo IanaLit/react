@@ -9,7 +9,9 @@ const initialState: ArticleState = {
     limit: 5,
     loading: false,
     searchValue: '',
-    sortBy: SortType.popularity
+    sortBy: SortType.popularity,
+    total: 0,
+
 }
 export const articleReducer = (state = initialState, action: ArticleAction):ArticleState => {
     switch (action.type) {
@@ -27,8 +29,10 @@ export const articleReducer = (state = initialState, action: ArticleAction):Arti
             return { ...state, searchValue: action.payload };
         }
         case ArticleActionTypes.SET_SORT_BY: {
-            console.log("case sort");
             return { ...state, sortBy: action.payload };
+        }
+        case ArticleActionTypes.SET_TOTAL: {
+            return { ...state, total: action.payload };
         }
         default: return state;
     }

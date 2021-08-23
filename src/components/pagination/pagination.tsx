@@ -1,6 +1,8 @@
 import React, {
-  useState, MouseEvent, useEffect, ChangeEvent,
+  MouseEvent, useEffect,
 } from 'react';
+import { useActions } from '../../hooks/useAction';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import './pagination.scss';
 
 const LEFT_PAGE = 'LEFT';
@@ -17,33 +19,23 @@ const range = (from:number, to:number, step = 1) => {
   return rangeArray;
 };
 
-export const Pagination = (props: {
-  page: number, pageSize: number,
-  totalResults: number,
-  gotoPage: (page: number) => void,
-  setPageSize: any
-}) => {
-  const {
-    page,
-    pageSize,
-    totalResults,
-    gotoPage,
-    setPageSize,
-  } = props;
-  const [currentPage, setCurrentPage] = useState(page);
+export const Pagination = () => {
+  const { page, limit , total} = useTypedSelector(state => state.article)
+  const { fetchArticles, setArticlesLimit, setArticlesPage } = useActions();
+
   useEffect(() => {
-    setCurrentPage(page);
-  }, [page]);
+    fetchArticles(page, limit);
+  }, [page, limit]);
 
   const fetchPageNumbers = () => {
-    const totalPages = Math.ceil(totalResults / pageSize);
+    const totalPages = Math.ceil(total / limit);
 
     const totalNumbers = 3;
     const totalBlocks = totalNumbers + 2;
 
     if (totalPages > totalBlocks) {
-      const startPage = Math.max(2, currentPage);
-      const endPage = Math.min(totalPages - 1, currentPage);
+      const startPage = Math.max(2, page);
+      const endPage = Math.min(totalPages - 1, page);
       let pages:(string | number)[] = range(startPage, endPage);
 
       const hasLeftSpill = startPage > 2;
@@ -81,21 +73,22 @@ export const Pagination = (props: {
 
   const handleClick = (newPage:number | string) => (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    gotoPage((newPage as number));
+    setArticlesPage((newPage as number));
   };
 
   const handleMoveLeft = (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    gotoPage(currentPage - 1);
+    setArticlesPage(page - 1);
   };
 
   const handleMoveRight = (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    gotoPage(currentPage + 1);
+    setArticlesPage(page + 1);
   };
 
-  if (!totalResults || totalResults === 1) return null;
+  if (!total|| total === 1) return null;
   const pages = fetchPageNumbers();
+  console.log(pages);
   return (
     <div className="pagination">
       <ul>
@@ -132,7 +125,7 @@ export const Pagination = (props: {
       </ul>
       <label htmlFor="pageSize">
         page size:
-        <input type="text" name="pageSize" value={pageSize} onChange={setPageSize} />
+        <input type="text" name="pageSize" onChange={(e)=>setArticlesLimit(e.target.value as unknown as number)} />
       </label>
 
     </div>

@@ -1,12 +1,10 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { useActions } from '../../hooks/useAction';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { SortType } from '../../interfaces/articleInterface';
-import { setSortBy } from '../../store/action-creators/article';
 import './filter.scss';
 
 export const Filter = () => {
-  // const { sortBy, handleFilter } = props;
   const { sortBy } = useTypedSelector(state => state.article)
   const { setSortBy} = useActions();
   return (
