@@ -16,12 +16,12 @@ const API_KEY = '13f832d3d3244deb8442164a5f9263af';
 
 export const Dashboard: FC = () => {
 
-  const { articles, page, limit, loading, error, searchValue } = useTypedSelector(state => state.article)
+  const { articles, page, limit, loading, error, searchValue, sortBy } = useTypedSelector(state => state.article)
   const { fetchArticles } = useActions();
   console.log(articles);
   // const [searchValue, setSearchValue] = useState<string>('');
   // const [articles, setArticles] = useState<Article[]>([]);
-  const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
+  // const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
   // const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const [totalResults, setTotalResults] = useState(0);
@@ -47,9 +47,9 @@ export const Dashboard: FC = () => {
   // useEffect(() => {
   //   handleSubmit('');
   // }, [page, pageSize]);
-  const handleFilter = (sort:SortType) => {
-    setSortBy(sort);
-  };
+  // const handleFilter = (sort:SortType) => {
+  //   setSortBy(sort);
+  // };
   useEffect(() => {
     fetchArticles(page, limit)
   }, [page, limit])
@@ -71,7 +71,7 @@ export const Dashboard: FC = () => {
         // sortBy={sortBy}
         // handleChange={handleChange}
         // handleSubmit={()=> fetchArticles()}
-        handleFilter={handleFilter}
+        // handleFilter={handleFilter}
 
       />
       {isLoading ? <Loader />

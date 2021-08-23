@@ -9,29 +9,30 @@ import { SortType } from '../../interfaces/articleInterface';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useAction';
 
-const SearchPanel = (props: {
+const SearchPanel = () => {
   // searchValue: string,
   // sortBy: SortType,
   // handleChange: (e: ChangeEvent<HTMLInputElement>) => void,
   // handleSubmit: (e: ChangeEvent<HTMLFormElement>) => Promise<void>,
-  handleFilter: (sort: SortType) => void,
-}) => {
-  const {
-    //searchValue, sortBy, handleChange, handleFilter,
-  } = props;
+//   handleFilter: (sort: SortType) => void,
 
-  const {searchValue } = useTypedSelector(state => state.article)
-  console.log(searchValue);
+  // const {
+  //   //searchValue, sortBy, handleChange, handleFilter,
+  // } = props;
+
+  const {searchValue, sortBy } = useTypedSelector(state => state.article)
+  // console.log(searchValue);
   const { fetchArticles} = useActions();
   return (
     <form className="form" onSubmit={(e) => {
       e.preventDefault();
-      fetchArticles(1, 5, searchValue)
+      console.log(sortBy);
+      fetchArticles(1, 5, searchValue, sortBy)
     }}>
       <div className="search-panel">
         <SearchField  />
         <SearchButton />
-        {/* <Filter sortBy={sortBy} handleFilter={handleFilter} /> */}
+        <Filter/>
       </div>
     </form>
   );

@@ -1,4 +1,4 @@
-import { Article } from "../../interfaces/articleInterface";
+import { Article, SortType } from "../../interfaces/articleInterface";
 
 export interface ArticleState{
     articles: Article[],
@@ -6,7 +6,8 @@ export interface ArticleState{
     error: null | string,
     limit: number,
     loading: boolean,
-    searchValue: string
+    searchValue: string,
+    sortBy: SortType,
 }
 
 export enum ArticleActionTypes {
@@ -15,7 +16,8 @@ export enum ArticleActionTypes {
     FETCH_ARTICLES_ERROR = 'FETCH_ARTICLES_ERROR',
     SET_ARTICLES_PAGE = 'SET_ARTICLES_PAGE',
     SET_ARTICLES_LIMIT = 'SET_ARTICLES_LIMIT',
-    SET_VALUE= 'SET_VALUE',
+    SET_VALUE = 'SET_VALUE',
+    SET_SORT_BY = 'SET_SORT_BY'
 }
 interface FetchArticlesAction {
     type: ArticleActionTypes.FETCH_ARTICLES,
@@ -40,10 +42,15 @@ interface SetValueAction {
     type: ArticleActionTypes.SET_VALUE,
     payload: string
 }
+interface SetSortByAction {
+    type: ArticleActionTypes.SET_SORT_BY,
+    payload: SortType
+}
 export type ArticleAction =
     FetchArticlesAction
     | FetchArticlesErrorAction
     | FetchArticlesSuccessAction
     | SetArticlesLimitAction
     | SetArticlesPageAction
-    | SetValueAction;
+    | SetValueAction
+    | SetSortByAction;

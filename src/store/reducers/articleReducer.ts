@@ -1,3 +1,4 @@
+import { SortType } from "../../interfaces/articleInterface";
 import { ArticleAction, ArticleActionTypes, ArticleState } from "../types/article";
 
 
@@ -8,6 +9,7 @@ const initialState: ArticleState = {
     limit: 5,
     loading: false,
     searchValue: '',
+    sortBy: SortType.popularity
 }
 export const articleReducer = (state = initialState, action: ArticleAction):ArticleState => {
     switch (action.type) {
@@ -22,7 +24,11 @@ export const articleReducer = (state = initialState, action: ArticleAction):Arti
         case ArticleActionTypes.SET_ARTICLES_LIMIT:
             return { ...state, limit: action.payload };
         case ArticleActionTypes.SET_VALUE: {
-            return {...state, searchValue: action.payload}
+            return { ...state, searchValue: action.payload };
+        }
+        case ArticleActionTypes.SET_SORT_BY: {
+            console.log("case sort");
+            return { ...state, sortBy: action.payload };
         }
         default: return state;
     }

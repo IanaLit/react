@@ -1,9 +1,14 @@
 import React, { ChangeEvent } from 'react';
+import { useActions } from '../../hooks/useAction';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { SortType } from '../../interfaces/articleInterface';
+import { setSortBy } from '../../store/action-creators/article';
 import './filter.scss';
 
-export const Filter = (props: { sortBy: SortType, handleFilter: (sort: SortType) => void }) => {
-  const { sortBy, handleFilter } = props;
+export const Filter = () => {
+  // const { sortBy, handleFilter } = props;
+  const { sortBy } = useTypedSelector(state => state.article)
+  const { setSortBy} = useActions();
   return (
     <div style={{}} className="radios">
       <label htmlFor="relevancy">
@@ -12,7 +17,12 @@ export const Filter = (props: { sortBy: SortType, handleFilter: (sort: SortType)
           type="radio"
           value={SortType.relevancy}
           checked={sortBy === SortType.relevancy}
-          onChange={() => handleFilter(SortType.relevancy)}
+          onChange={(e) => {
+            setSortBy(SortType.relevancy)
+            console.log("change");
+            
+          }
+          }
         />
         {' '}
         relevancy
@@ -23,7 +33,7 @@ export const Filter = (props: { sortBy: SortType, handleFilter: (sort: SortType)
           type="radio"
           value={SortType.popularity}
           checked={sortBy === SortType.popularity}
-          onChange={() => handleFilter(SortType.popularity)}
+          onChange={() => setSortBy(SortType.popularity)}
         />
         {' '}
         popularity
@@ -34,7 +44,7 @@ export const Filter = (props: { sortBy: SortType, handleFilter: (sort: SortType)
           type="radio"
           value={SortType.publishedAt}
           checked={sortBy === SortType.publishedAt}
-          onChange={() => handleFilter(SortType.publishedAt)}
+          onChange={() => setSortBy(SortType.publishedAt)}
         />
         {' '}
         publishedAt
