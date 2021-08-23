@@ -16,10 +16,10 @@ const API_KEY = '13f832d3d3244deb8442164a5f9263af';
 
 export const Dashboard: FC = () => {
 
-  const { articles, page, limit, loading, error } = useTypedSelector(state => state.article)
+  const { articles, page, limit, loading, error, searchValue } = useTypedSelector(state => state.article)
   const { fetchArticles } = useActions();
   console.log(articles);
-  const [searchValue, setSearchValue] = useState<string>('');
+  // const [searchValue, setSearchValue] = useState<string>('');
   // const [articles, setArticles] = useState<Article[]>([]);
   const [sortBy, setSortBy] = useState<SortType>(SortType.popularity);
   // const [page, setPage] = useState(1);
@@ -27,23 +27,23 @@ export const Dashboard: FC = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: ChangeEvent<HTMLFormElement> | '') => {
-    if (e)e.preventDefault();
-    setIsLoading(true);
-    try {
-      if (searchValue) {
-        const response: AxiosResponse<GET200Articles> = await axios.get(
-          `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
-        );
-        // setArticles(response.data.articles);
-        setTotalResults(response.data.totalResults);
-      }
-    } catch (err: any) {
-      console.error(e);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // const handleSubmit = async (e: ChangeEvent<HTMLFormElement> | '') => {
+  //   if (e)e.preventDefault();
+  //   setIsLoading(true);
+  //   try {
+  //     if (searchValue) {
+  //       const response: AxiosResponse<GET200Articles> = await axios.get(
+  //         `v2/everything?q=${searchValue}&apiKey=${API_KEY}&sortBy=${sortBy}&page=${page}&pageSize=${pageSize}`,
+  //       );
+  //       // setArticles(response.data.articles);
+  //       setTotalResults(response.data.totalResults);
+  //     }
+  //   } catch (err: any) {
+  //     console.error(e);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   // useEffect(() => {
   //   handleSubmit('');
   // }, [page, pageSize]);
@@ -53,10 +53,10 @@ export const Dashboard: FC = () => {
   useEffect(() => {
     fetchArticles(page, limit)
   }, [page, limit])
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearchValue(value);
-  };
+  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const { value } = e.target;
+  //   setSearchValue(value);
+  // };
   // const gotoPage = (newPage:number) => {
   //   setPage(newPage);
   // };
@@ -67,10 +67,10 @@ export const Dashboard: FC = () => {
   return (
     <div className="dashboard">
       <SearchPanel
-        searchValue={searchValue}
-        sortBy={sortBy}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
+        // searchValue={searchValue}
+        // sortBy={sortBy}
+        // handleChange={handleChange}
+        // handleSubmit={()=> fetchArticles()}
         handleFilter={handleFilter}
 
       />

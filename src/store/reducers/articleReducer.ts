@@ -7,6 +7,7 @@ const initialState: ArticleState = {
     error: null,
     limit: 5,
     loading: false,
+    searchValue: '',
 }
 export const articleReducer = (state = initialState, action: ArticleAction):ArticleState => {
     switch (action.type) {
@@ -20,6 +21,9 @@ export const articleReducer = (state = initialState, action: ArticleAction):Arti
             return { ...state, page: action.payload };
         case ArticleActionTypes.SET_ARTICLES_LIMIT:
             return { ...state, limit: action.payload };
+        case ArticleActionTypes.SET_VALUE: {
+            return {...state, searchValue: action.payload}
+        }
         default: return state;
     }
 }
