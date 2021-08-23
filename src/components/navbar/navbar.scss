@@ -1,0 +1,33 @@
+.navbar {
+  height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 50px;
+  margin-bottom: 5vw;
+
+  &_link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+    &:last-child {
+      margin-right: 100px;
+    }
+    &__active {
+      background-color: cadetblue;
+      color: dimgray;
+    }
+  }
+  :hover {
+    background-color: rgb(155, 193, 194);
+    color: dimgray;
+    transition: all 0.3s;
+  }
+}
