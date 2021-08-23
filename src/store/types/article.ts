@@ -5,7 +5,7 @@ export interface ArticleState{
     page: number,
     error: null | string,
     limit: number,
-    loading: boolean,
+    isLoading: boolean,
     searchValue: string,
     sortBy: SortType,
     total: number
