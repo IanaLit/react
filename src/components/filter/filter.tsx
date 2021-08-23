@@ -5,8 +5,8 @@ import { SortType } from '../../interfaces/articleInterface';
 import './filter.scss';
 
 export const Filter = () => {
-  const { sortBy } = useTypedSelector(state => state.article)
-  const { setSortBy} = useActions();
+  const { sortBy } = useTypedSelector((state) => state.article);
+  const { setSortBy } = useActions();
   return (
     <div style={{}} className="radios">
       <label htmlFor="relevancy">
@@ -16,11 +16,9 @@ export const Filter = () => {
           value={SortType.relevancy}
           checked={sortBy === SortType.relevancy}
           onChange={(e) => {
-            setSortBy(SortType.relevancy)
-            console.log("change");
-            
-          }
-          }
+            setSortBy(SortType.relevancy);
+            console.log('change');
+          }}
         />
         {' '}
         relevancy

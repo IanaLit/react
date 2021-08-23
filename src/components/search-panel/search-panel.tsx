@@ -9,18 +9,21 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useAction';
 
 const SearchPanel = () => {
-  const {searchValue, sortBy } = useTypedSelector(state => state.article)
-  const { fetchArticles} = useActions();
+  const { searchValue, sortBy } = useTypedSelector((state) => state.article);
+  const { fetchArticles } = useActions();
   return (
-    <form className="form" onSubmit={(e) => {
-      e.preventDefault();
-      console.log(sortBy);
-      fetchArticles(1, 5, searchValue, sortBy)
-    }}>
+    <form
+      className="form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log(sortBy);
+        fetchArticles(1, 5, searchValue, sortBy);
+      }}
+    >
       <div className="search-panel">
-        <SearchField  />
+        <SearchField />
         <SearchButton />
-        <Filter/>
+        <Filter />
       </div>
     </form>
   );

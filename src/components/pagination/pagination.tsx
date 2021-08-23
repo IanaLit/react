@@ -20,7 +20,7 @@ const range = (from:number, to:number, step = 1) => {
 };
 
 export const Pagination = () => {
-  const { page, limit , total} = useTypedSelector(state => state.article)
+  const { page, limit, total } = useTypedSelector((state) => state.article);
   const { fetchArticles, setArticlesLimit, setArticlesPage } = useActions();
 
   useEffect(() => {
@@ -86,7 +86,7 @@ export const Pagination = () => {
     setArticlesPage(page + 1);
   };
 
-  if (!total|| total === 1) return null;
+  if (!total || total === 1) return null;
   const pages = fetchPageNumbers();
   console.log(pages);
   return (
@@ -125,7 +125,7 @@ export const Pagination = () => {
       </ul>
       <label htmlFor="pageSize">
         page size:
-        <input type="text" name="pageSize" onChange={(e)=>setArticlesLimit(e.target.value as unknown as number)} />
+        <input type="text" name="pageSize" onChange={(e) => setArticlesLimit(e.target.value as unknown as number)} />
       </label>
 
     </div>
