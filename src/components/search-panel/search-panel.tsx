@@ -13,10 +13,10 @@ const SearchPanel = () => {
   const { fetchArticles } = useActions();
   return (
     <form
+      data-testid = "test-form"
       className="form"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(sortBy);
         fetchArticles(1, 5, searchValue, sortBy);
       }}
     >
