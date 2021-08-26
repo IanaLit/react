@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Article } from '../../interfaces/articleInterface';
 import { Description } from '../description/description';

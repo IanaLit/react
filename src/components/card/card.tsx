@@ -1,66 +1,66 @@
-import React from 'react';
-import CardInterface from '../../interfaces/cardInterface';
+// import React from 'react';
+// import CardInterface from '../../interfaces/cardInterface';
 
-import './card.scss';
+// import './card.scss';
 
-const Card = (card: CardInterface) => {
-  const {
-    firstName, lastName, zipCode, birthDate, deliveryDate, country, coupon, samples, pocket, gender, agree,
-  } = card;
-  return (
+// const Card = (card: CardInterface) => {
+//   const {
+//     firstName, lastName, zipCode, birthDate, deliveryDate, country, coupon, samples, pocket, gender, agree,
+//   } = card;
+//   return (
 
-    <div className="card">
+//     <div className="card">
 
-      <p>Order Details</p>
-      <div className="properties">
-        <span>First name:</span>
-        {' '}
-        {firstName}
-      </div>
-      <div className="properties">
-        <span>Last name:</span>
-        {' '}
-        {lastName}
-      </div>
-      <div className="properties">
-        <span>Zip code:</span>
-        {' '}
-        {zipCode}
-      </div>
-      <div className="properties">
-        <span>Birh date:</span>
-        {' '}
-        {birthDate}
-      </div>
-      <div className="properties">
-        <span>Delivery date:</span>
-        {deliveryDate}
-      </div>
-      <div className="properties">
-        <span>Country:</span>
-        {country}
-      </div>
-      <div className="properties">
-        <span>Gender:</span>
-        {gender ? 'female' : 'male'}
-      </div>
-      <div className="gifts">
-        <div className="properties">
-          <span>Coupon:</span>
-          {coupon && 'yes'}
-        </div>
-        <div className="properties">
-          <span>Samples:</span>
-          {samples && 'yes'}
-        </div>
-        <div className="properties">
-          <span>Pocket:</span>
-          {' '}
-          {pocket && 'yes'}
-        </div>
-      </div>
-    </div>
-  );
-};
+//       <p>Order Details</p>
+//       <div className="properties">
+//         <span>First name:</span>
+//         {' '}
+//         {firstName}
+//       </div>
+//       <div className="properties">
+//         <span>Last name:</span>
+//         {' '}
+//         {lastName}
+//       </div>
+//       <div className="properties">
+//         <span>Zip code:</span>
+//         {' '}
+//         {zipCode}
+//       </div>
+//       <div className="properties">
+//         <span>Birh date:</span>
+//         {' '}
+//         {birthDate}
+//       </div>
+//       <div className="properties">
+//         <span>Delivery date:</span>
+//         {deliveryDate}
+//       </div>
+//       <div className="properties">
+//         <span>Country:</span>
+//         {country}
+//       </div>
+//       <div className="properties">
+//         <span>Gender:</span>
+//         {gender ? 'female' : 'male'}
+//       </div>
+//       <div className="gifts">
+//         <div className="properties">
+//           <span>Coupon:</span>
+//           {coupon && 'yes'}
+//         </div>
+//         <div className="properties">
+//           <span>Samples:</span>
+//           {samples && 'yes'}
+//         </div>
+//         <div className="properties">
+//           <span>Pocket:</span>
+//           {' '}
+//           {pocket && 'yes'}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
-export default Card;
+// export default Card;
