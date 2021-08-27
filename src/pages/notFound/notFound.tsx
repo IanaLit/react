@@ -2,8 +2,7 @@ import React from 'react';
 import './notFound.scss';
 
 export const NotFound = () => (
-  <div className="page_not-found">
-    {/* <h1>Not found</h1> */}
+  <div data-testid = "test-error-page" className="page_not-found">
   </div>
 
 );

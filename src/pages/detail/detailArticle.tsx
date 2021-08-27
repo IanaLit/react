@@ -12,11 +12,11 @@ export const DetailArticle = () => {
   const publishedAt = query.get('publishedAt');
   const author = query.get('author');
   const description = query.get('description');
-  console.log(params.title);
+  console.log(query);
   return (
-    <div className="detail-container">
+    <div className="detail-container" data-testid = "test-detail">
       <div className="detail-card">
-        <img src={urlToImage || ''} alt="" />
+        <img src={urlToImage || ''} alt="article-image" />
         <div className="detail-content">
           <h1>{params.title}</h1>
           <p>{description}</p>

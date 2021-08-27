@@ -9,7 +9,7 @@ const initialState: ArticleState = {
   isLoading: false,
   searchValue: '',
   sortBy: SortType.popularity,
-  total: 0,
+  total: 20,
 
 };
 export const articleReducer = (state = initialState, action: ArticleAction):ArticleState => {

@@ -88,7 +88,6 @@ export const Pagination = () => {
 
   if (!total || total === 1) return null;
   const pages = fetchPageNumbers();
-  console.log(pages);
   return (
     <div className="pagination">
       <ul>
@@ -116,8 +115,8 @@ export const Pagination = () => {
           }
 
           return (
-            <li key={curPage} className={`page-item${page === +curPage ? ' active' : ''}`}>
-              <button type="button" className="page-link" onClick={handleClick(curPage)}>{ curPage }</button>
+            <li key={curPage} data-testid={`test-link${curPage}`} className={`page-item${page === +curPage ? ' active' : ''}`}>
+              <button type="button" data-testid={ curPage} className="page-link" onClick={handleClick(curPage)}>{ curPage }</button>
             </li>
           );
         }) }
