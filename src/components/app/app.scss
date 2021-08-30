@@ -1,0 +1,19 @@
+#root {
+  width: 100%;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 110px;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5vw;
+}
+.page {
+  display: flex;
+  justify-content: center;
+}
