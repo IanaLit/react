@@ -7,8 +7,7 @@ import { store } from '../src/store';
 import {App} from '../src/components/app/app'
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-import { About } from '../src/pages/about';
-import { DetailArticle } from '../src/pages/detail/detailArticle';
+
 describe("router", () => {
     it("home page", () => {
         const history = createMemoryHistory();
@@ -32,8 +31,5 @@ describe("router", () => {
         const { container} = render(<Provider store={store}><Router history={history}><App /></Router></Provider>);
         expect(container.innerHTML).toMatch("//");
     })
-    
-    
-
 
 })

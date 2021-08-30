@@ -124,7 +124,7 @@ export const Pagination = () => {
       </ul>
       <label htmlFor="pageSize">
         page size:
-        <input type="text" name="pageSize" onChange={(e) => setArticlesLimit(e.target.value as unknown as number)} />
+        <input data-testid= 'page-count' type="text" name="pageSize" onChange={(e) => setArticlesLimit(e.target.value as unknown as number)} />
       </label>
 
     </div>

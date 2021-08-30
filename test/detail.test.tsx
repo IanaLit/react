@@ -3,9 +3,6 @@ import userEvent from '@testing-library/user-event'
 import {render, screen} from "@testing-library/react"
 import React from "react"
 import { DetailArticle } from "../src/pages/detail/detailArticle";
-import { Provider } from 'react-redux';
-import { Filter } from '../src/components/filter/filter';
-import { store } from '../src/store';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 
@@ -16,9 +13,10 @@ describe('detail article', () => {
         history.push(route);
         render(
             <Router history={history}>
-                <DetailArticle />
+                <DetailArticle /> 
             </Router>,
         );
+        expect(await screen.findByTestId("test-detail")).toBeInTheDocument();
     })
-    expect(screen.findByTestId("test-detail")).toBeInTheDocument();
+    
 })
