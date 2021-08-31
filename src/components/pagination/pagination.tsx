@@ -116,7 +116,7 @@ export const Pagination = () => {
 
           return (
             <li key={curPage} data-testid={`test-link${curPage}`} className={`page-item${page === +curPage ? ' active' : ''}`}>
-              <button type="button" data-testid={ curPage} className="page-link" onClick={handleClick(curPage)}>{ curPage }</button>
+              <button type="button" data-testid={curPage} className="page-link" onClick={handleClick(curPage)}>{ curPage }</button>
             </li>
           );
         }) }
@@ -124,7 +124,7 @@ export const Pagination = () => {
       </ul>
       <label htmlFor="pageSize">
         page size:
-        <input data-testid= 'page-count' type="text" name="pageSize" onChange={(e) => setArticlesLimit(e.target.value as unknown as number)} />
+        <input data-testid="page-count" type="text" name="pageSize" onChange={(e) => setArticlesLimit(e.target.value as unknown as number)} />
       </label>
 
     </div>

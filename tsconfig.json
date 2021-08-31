@@ -74,5 +74,10 @@
     ]
   },
   "files": ["src/index.tsx", "modules.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules","test", "dist"],
+  "include": [
+    "**/*.config.js", // for *.config.js files,
+    "./.eslintrc",
+    "./src",
+  ]
 }

@@ -11,7 +11,7 @@ export const Filter = () => {
     <div style={{}} className="radios">
       <label htmlFor="relevancy">
         <input
-          id = "relevancy"
+          id="relevancy"
           name="relevancy"
           type="radio"
           value={SortType.relevancy}
@@ -26,7 +26,7 @@ export const Filter = () => {
       </label>
       <label htmlFor="popularity">
         <input
-          id = "popularity"
+          id="popularity"
           name="popularity"
           type="radio"
           value={SortType.popularity}
@@ -38,7 +38,7 @@ export const Filter = () => {
       </label>
       <label htmlFor="publishedAt">
         <input
-          id = "publishedAt"
+          id="publishedAt"
           name="publishedAt"
           type="radio"
           value={SortType.publishedAt}

@@ -23,9 +23,10 @@ export const Dashboard: FC = () => {
       <SearchPanel />
       {isLoading ? <Loader />
         : (
-          <div className="cards" >
+          <div className="cards">
             {articles.map((article, index: number) => (
-              <ArticleCard data-testid = "test-card"
+              <ArticleCard
+                data-testid="test-card"
                 key={article.publishedAt}
                 author={article.author}
                 content={article.content}

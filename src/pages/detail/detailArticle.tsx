@@ -14,9 +14,9 @@ export const DetailArticle = () => {
   const description = query.get('description');
   console.log(query);
   return (
-    <div className="detail-container" data-testid = "test-detail">
+    <div className="detail-container" data-testid="test-detail">
       <div className="detail-card">
-        <img src={urlToImage || ''} alt="article-image" />
+        <img src={urlToImage || ''} alt="article" />
         <div className="detail-content">
           <h1>{params.title}</h1>
           <p>{description}</p>
